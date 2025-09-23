@@ -171,19 +171,29 @@
     </div>
     -->
 
-    <form action="https://formspree.io/f/mwprkboe" method="POST">
-      <div class="input-box">
-        <input type="text" name="name" placeholder="Full Name" required/>
-        <input type="email" name="email" placeholder="Email Address" required/>
-      </div>
-      <div class="input-box">
-        <input type="tel" name="number" placeholder="Phone"/>
-        <input type="text" name="subject" placeholder="Subject"/>
-      </div>
-      <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
-      <input type="submit" value="Send Message" class="btn"/>
-    </form>
-  </section>
+
+  <form action="https://formspree.io/f/mwprkboe" method="POST">
+  <div class="input-box">
+    <input type="text" name="name" placeholder="Full Name" required/>
+    <input type="email" name="email" placeholder="Email Address" required/>
+  </div>
+  <div class="input-box">
+    <input type="tel" name="phone" placeholder="Phone"/>
+    <input type="text" name="subject" placeholder="Subject"/>
+  </div>
+
+  <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+
+  <!-- İsteğe bağlı: konu başlığı ve başarılı dönüş adresi -->
+  <input type="hidden" name="_subject" value="New message from Portfolio"/>
+  <input type="hidden" name="_next" value="https://SENIN-ALAN-ADIN/#contact"/>
+
+  <!-- Basit honeypot (spam azaltma) -->
+  <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off"/>
+
+  <input type="submit" value="Send Message" class="btn"/>
+</form>
+
 
   <!-- Footer -->
   <footer class="footer">
@@ -218,5 +228,6 @@
   </script>
 </body>
 </html>
+
 
 
