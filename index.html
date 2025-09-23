@@ -186,7 +186,6 @@
 
   <!-- İsteğe bağlı: konu başlığı ve başarılı dönüş adresi -->
   <input type="hidden" name="_subject" value="New message from Portfolio"/>
-  <input type="hidden" name="_next" value="https://SENIN-ALAN-ADIN/#contact"/>
 
   <!-- Basit honeypot (spam azaltma) -->
   <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off"/>
@@ -194,7 +193,9 @@
   <input type="submit" value="Send Message" class="btn"/>
 </form>
 
+ </script>
 
+    
   <!-- Footer -->
   <footer class="footer">
     <div class="social">
@@ -224,10 +225,42 @@
   <script src="script.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
     
-  </script>
+  const form = document.querySelector('#contact form');
+  if (form) {
+    const statusEl = document.createElement('p');
+    statusEl.id = 'form-status';
+    statusEl.setAttribute('role','status');
+    statusEl.style.marginTop = '.75rem';
+    form.after(statusEl);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Sayfanın üste zıplamasını engeller
+      statusEl.textContent = 'Sending...';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.reset();
+          statusEl.textContent = 'Thanks! Your message was sent.';
+        } else {
+          statusEl.textContent = 'Sorry, something went wrong. Please try again.';
+        }
+      } catch (err) {
+        statusEl.textContent = 'Network error. Please try again.';
+      }
+    });
+  }
+</script>
+ 
+
 </body>
 </html>
+
 
 
 
