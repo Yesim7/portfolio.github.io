@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yeşim Aygül | Researcher & PhD Candidate</title>
+  <meta name="description" content="Yeşim Aygül – Research Assistant at Izmir Bakircay University. Network Analysis, Machine Learning, Virtual Reality."/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+  <style>
+    /* ═══════════════════════════════════════════
+       TOKENS
+    ═══════════════════════════════════════════ */
+    :root {
+      --navy:   #ffffff;
+      --navy2:  #eef2fb;
+      --indigo: #dce6f7;
+      --teal:   #1a56db;
+      --teal2:  #3b82f6;
+      --cream:  #f0f4ff;
+      --white:  #0f1b40;
+      --slate:  #4b5a7a;
+      --border: rgba(26,86,219,.15);
+      --glow:   rgba(26,86,219,.07);
+      --card:   rgba(238,242,251,.85);
+      --glass:  rgba(255,255,255,.92);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; font-size:62.5%; overflow-x:hidden; }
+
+    body {
+      background: var(--navy);
+      color: var(--slate);
+      font-family: 'Mulish', sans-serif;
+      font-weight: 400;
+      overflow-x: hidden;
+    }
+
+    /* subtle dot pattern */
+    body::before {
+      content:'';
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      background-image: radial-gradient(circle, rgba(26,86,219,.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:#f0f4ff; }
+    ::-webkit-scrollbar-thumb { background:var(--teal); border-radius:3px; }
+
+    /* ── SCROLL PROGRESS ── */
+    #progress-bar {
+      position:fixed; top:0; left:0; height:2px; z-index:9999;
+      background:linear-gradient(90deg,var(--teal),var(--teal2));
+      width:0; transition:width .1s linear;
+    }
+
+    /* ── NAVIGATION ── */
+    header {
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1.8rem 8%;
+      background:var(--glass);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border);
+      transition:all .4s ease;
+    }
+
+    .logo {
+      font-family:'Playfair Display', serif;
+      font-size:2.2rem; font-weight:700;
+      color:var(--white); letter-spacing:.02em;
+      text-decoration:none;
+    }
+    .logo span { color:var(--teal); }
+
+    .navbar { display:flex; gap:0; list-style:none; }
+    .navbar a {
+      font-size:1.35rem; font-weight:500; letter-spacing:.08em;
+      text-transform:uppercase; color:var(--slate);
+      text-decoration:none; padding:.6rem 1.6rem;
+      position:relative; transition:color .3s;
+    }
+    .navbar a::after {
+      content:''; position:absolute; bottom:0; left:50%; right:50%;
+      height:1px; background:var(--teal);
+      transition:left .3s, right .3s;
+    }
+    .navbar a:hover, .navbar a.active { color:var(--teal); }
+    .navbar a:hover::after, .navbar a.active::after { left:1.6rem; right:1.6rem; }
+
+    .nav-contact {
+      font-size:1.3rem; font-weight:600; letter-spacing:.08em;
+      color:var(--teal); text-decoration:none;
+      padding:.7rem 2rem;
+      border:1px solid var(--border);
+      transition:all .3s;
+    }
+    .nav-contact:hover {
+      background:var(--teal); color:#ffffff;
+      box-shadow:0 0 20px rgba(26,86,219,.2);
+    }
+
+    #menu-icon {
+      font-size:3rem; color:var(--teal);
+      cursor:pointer; display:none; background:none; border:none;
+    }
+
+    /* ── SECTIONS ── */
+    section { position:relative; z-index:1; }
+
+    /* ── HOME ── */
+    #home {
+      min-height:100vh;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      padding:12rem 8% 8rem;
+      text-align:center;
+      overflow:hidden;
+    }
+
+    .home-orb {
+      position:absolute; width:600px; height:600px; border-radius:50%;
+      background:radial-gradient(circle, rgba(26,86,219,.06) 0%, transparent 70%);
+      top:50%; left:50%; transform:translate(-50%,-50%);
+      pointer-events:none;
+    }
+
+    .home-img {
+      position:relative; z-index:2; margin-bottom:3rem;
+      animation:fadeDown .8s ease both;
+    }
+    .home-img img {
+      width:180px; height:180px; border-radius:50%; object-fit:cover;
+      border:2px solid var(--teal);
+      box-shadow:0 0 0 8px rgba(26,86,219,.06), 0 0 40px rgba(26,86,219,.12);
+    }
+    .home-img-ring {
+      position:absolute; inset:-12px; border-radius:50%;
+      border:1px solid rgba(26,86,219,.2);
+      animation:spin 12s linear infinite;
+    }
+    .home-img-ring::before {
+      content:''; position:absolute; top:0; left:50%;
+      width:6px; height:6px; border-radius:50%;
+      background:var(--teal); transform:translate(-50%,-50%);
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    .home-eyebrow {
+      font-size:1.2rem; letter-spacing:.25em; text-transform:uppercase;
+      color:var(--teal); margin-bottom:1rem; z-index:2;
+      animation:fadeUp .6s .1s ease both;
+    }
+    .home-title {
+      font-family:'Playfair Display', serif;
+      font-size:clamp(4rem,8vw,7.5rem);
+      font-weight:700; line-height:1.05; color:var(--white);
+      z-index:2; animation:fadeUp .6s .2s ease both;
+    }
+    .home-title span { color:var(--teal); }
+    .home-typed {
+      font-size:2.2rem; font-weight:300; color:var(--slate);
+      margin:1.2rem 0; z-index:2; min-height:3.5rem;
+      animation:fadeUp .6s .3s ease both;
+    }
+    .home-typed .typed-text { color:var(--teal2); font-weight:500; }
+    .home-desc {
+      font-size:1.55rem; font-weight:400; line-height:1.8;
+      color:var(--slate); max-width:700px;
+      margin:.8rem auto 0; z-index:2;
+      animation:fadeUp .6s .4s ease both;
+    }
+    .home-desc strong { color:var(--white); font-weight:600; }
+    .home-desc em { color:var(--teal2); font-style:normal; }
+
+    .social-row {
+      display:flex; gap:1.2rem; justify-content:center;
+      margin:3rem 0 2.5rem; z-index:2;
+      animation:fadeUp .6s .5s ease both;
+    }
+    .social-row a {
+      display:inline-flex; align-items:center; justify-content:center;
+      width:4.4rem; height:4.4rem; border-radius:50%;
+      font-size:2rem; color:var(--slate);
+      border:1px solid var(--border);
+      transition:all .3s;
+      text-decoration:none;
+    }
+    .social-row a:hover {
+      color:var(--navy); background:var(--teal);
+      border-color:var(--teal);
+      box-shadow:0 0 20px rgba(26,86,219,.2);
+      transform:translateY(-4px);
+    }
+
+    .btn-primary {
+      display:inline-block; padding:1.2rem 3rem;
+      background:var(--teal); color:#ffffff;
+      font-size:1.4rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      text-decoration:none;
+      clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+      transition:all .3s; z-index:2;
+      animation:fadeUp .6s .6s ease both;
+    }
+    .btn-primary:hover {
+      background:var(--teal2);
+      box-shadow:0 0 30px rgba(26,86,219,.25);
+      transform:translateY(-2px);
+    }
+
+    /* ── SECTION SHARED ── */
+    .sec-pad { padding:9rem 8%; }
+    .sec-pad-alt { padding:9rem 8%; background:var(--card); }
+
+    .sec-label {
+      display:inline-flex; align-items:center; gap:.8rem;
+      font-size:1.1rem; letter-spacing:.25em; text-transform:uppercase;
+      color:var(--teal); margin-bottom:1.2rem;
+    }
+    .sec-label::before, .sec-label::after {
+      content:''; height:1px; background:var(--teal); width:2.5rem;
+    }
+    .sec-heading {
+      font-family:'Playfair Display', serif;
+      font-size:clamp(3.5rem,5vw,5rem);
+      font-weight:700; color:var(--white); line-height:1.1;
+      margin-bottom:.8rem;
+    }
+    .sec-heading span { color:var(--teal); }
+    .sec-sub {
+      font-size:1.5rem; color:var(--slate); max-width:600px;
+      line-height:1.7; margin-bottom:5rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { overflow:hidden; }
+    .about-grid {
+      display:grid; grid-template-columns:1fr 1.5fr; gap:7rem; align-items:center;
+    }
+    .about-img-wrap { position:relative; }
+    .about-img-wrap img {
+      width:100%; border-radius:4px; object-fit:cover;
+      aspect-ratio:4/5;
+      border:1px solid var(--border);
+      box-shadow:0 0 60px rgba(26,86,219,.08);
+    }
+    .about-img-accent {
+      position:absolute; top:-1.5rem; left:-1.5rem; right:1.5rem; bottom:1.5rem;
+      border:1px solid rgba(26,86,219,.15); border-radius:4px;
+      pointer-events:none;
+    }
+    .about-badge {
+      position:absolute; bottom:-2rem; right:-2rem;
+      background:var(--teal); color:#ffffff;
+      padding:1.5rem 2rem; font-weight:700;
+      font-size:1.2rem; line-height:1.3;
+      clip-path:polygon(0 0,100% 0,100% 80%,80% 100%,0 100%);
+    }
+    .about-badge strong { display:block; font-size:2.8rem; line-height:1; }
+
+    .about-text { }
+    .about-text p {
+      font-size:1.55rem; line-height:1.9; color:var(--slate);
+      text-align:justify; hyphens:auto; margin-bottom:1.5rem;
+    }
+    .about-text p strong { color:var(--white); font-weight:600; }
+    .about-text p em { color:var(--teal2); font-style:normal; }
+    .about-pills {
+      display:flex; flex-wrap:wrap; gap:.8rem; margin:2.5rem 0 3rem;
+    }
+    .pill {
+      font-size:1.25rem; letter-spacing:.06em;
+      color:var(--teal); padding:.5rem 1.4rem;
+      border:1px solid var(--border);
+      transition:all .3s;
+    }
+    .pill:hover { background:var(--teal); color:var(--navy); }
+
+    /* ── RESEARCH AREAS ── */
+    #research { background:var(--navy2); }
+    .research-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:1px; background:var(--border);
+      border:1px solid var(--border);
+    }
+    .research-card {
+      background:var(--navy); padding:4rem 3rem;
+      position:relative; overflow:hidden;
+      transition:background .3s;
+    }
+    .research-card::before {
+      content:''; position:absolute; top:0; left:0; width:3px; height:0;
+      background:linear-gradient(to bottom,var(--teal),var(--teal2));
+      transition:height .4s ease;
+    }
+    .research-card:hover::before { height:100%; }
+    .research-card:hover { background:var(--indigo); }
+    .research-num {
+      font-family:'Playfair Display', serif;
+      font-size:6rem; font-weight:700; line-height:1;
+      color:rgba(26,86,219,.08); margin-bottom:-.5rem;
+      user-select:none;
+    }
+    .research-icon {
+      font-size:3.5rem; color:var(--teal); margin-bottom:1.8rem;
+    }
+    .research-card h3 {
+      font-family:'Playfair Display', serif;
+      font-size:2rem; font-weight:700; color:var(--white);
+      margin-bottom:1rem; line-height:1.3;
+    }
+    .research-card p { font-size:1.45rem; line-height:1.8; color:var(--slate); }
+
+    /* ── PROJECTS & PUBLICATIONS ── */
+    #portfolio { }
+
+    /* tab switcher */
+    .tab-row {
+      display:flex; gap:0; margin-bottom:4rem;
+      border:1px solid var(--border); width:fit-content;
+    }
+    .tab-btn {
+      font-size:1.3rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--slate); background:transparent;
+      border:none; padding:1.2rem 3rem; cursor:pointer;
+      transition:all .3s; position:relative;
+    }
+    .tab-btn.active {
+      color:#ffffff; background:var(--teal);
+    }
+    .tab-btn:not(.active):hover { color:var(--teal); }
+
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+
+    .proj-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+      gap:1.5rem;
+    }
+    .proj-card {
+      background:var(--navy); border:1px solid var(--border);
+      overflow:hidden; position:relative;
+      transition:transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .proj-card:hover {
+      transform:translateY(-6px);
+      border-color:var(--teal);
+      box-shadow:0 16px 40px rgba(26,86,219,.1);
+    }
+    .proj-img {
+      width:100%; aspect-ratio:16/9; overflow:hidden;
+      background:var(--indigo);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .proj-img img {
+      width:100%; height:100%; object-fit:cover;
+      transition:transform .4s ease;
+      filter:brightness(.95);
+    }
+    .proj-card:hover .proj-img img { transform:scale(1.05); filter:brightness(1); }
+    .proj-img-placeholder {
+      font-family:'Playfair Display',serif;
+      font-size:5rem; font-weight:700;
+      color:rgba(26,86,219,.15);
+    }
+    .proj-body { padding:2rem 2.2rem 1.8rem; }
+    .proj-badge {
+      display:inline-block; font-size:1.1rem; letter-spacing:.12em;
+      text-transform:uppercase; color:var(--teal);
+      margin-bottom:.8rem;
+    }
+    .proj-card h4 {
+      font-size:1.6rem; font-weight:600; color:var(--white);
+      line-height:1.45; margin-bottom:.6rem;
+    }
+    .proj-meta {
+      font-size:1.25rem; color:var(--slate);
+      display:flex; align-items:center; gap:.5rem;
+      margin-top:1rem; padding-top:1rem;
+      border-top:1px solid var(--border);
+    }
+    .proj-meta i { color:var(--teal); font-size:1.6rem; }
+
+    /* publications list */
+    .pub-list { display:flex; flex-direction:column; gap:1.5rem; }
+    .pub-item {
+      background:var(--navy); border:1px solid var(--border);
+      padding:2.5rem 3rem; display:flex; gap:2.5rem; align-items:flex-start;
+      transition:border-color .3s, transform .3s;
+    }
+    .pub-item:hover { border-color:var(--teal); transform:translateX(6px); }
+    .pub-num {
+      font-family:'Playfair Display',serif;
+      font-size:3.5rem; font-weight:700; color:rgba(26,86,219,.18);
+      line-height:1; flex-shrink:0; width:4rem;
+    }
+    .pub-body {}
+    .pub-venue {
+      font-size:1.2rem; letter-spacing:.12em; text-transform:uppercase;
+      color:var(--teal); margin-bottom:.5rem;
+    }
+    .pub-body h4 {
+      font-size:1.65rem; font-weight:600; color:var(--white);
+      line-height:1.5; margin-bottom:.5rem;
+    }
+    .pub-body p { font-size:1.4rem; color:var(--slate); line-height:1.6; }
+
+    /* ── CONTACT ── */
+    #contact { background:var(--navy2); }
+    .contact-grid { display:grid; grid-template-columns:1fr 1.8fr; gap:6rem; align-items:start; }
+    .contact-intro h3 {
+      font-family:'Playfair Display',serif;
+      font-size:2.8rem; font-weight:700; color:var(--white);
+      margin-bottom:1.5rem; line-height:1.3;
+    }
+    .contact-intro p { font-size:1.5rem; line-height:1.8; color:var(--slate); margin-bottom:3rem; }
+    .contact-detail {
+      display:flex; align-items:center; gap:1.5rem;
+      padding:1.2rem 0; border-bottom:1px solid var(--border);
+    }
+    .contact-detail:first-of-type { border-top:1px solid var(--border); }
+    .contact-icon {
+      width:3.8rem; height:3.8rem; border-radius:50%;
+      border:1px solid var(--border);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.8rem; color:var(--teal); flex-shrink:0;
+    }
+    .contact-detail-text { font-size:1.4rem; color:var(--slate); }
+    .contact-detail-text strong {
+      display:block; font-size:1.15rem; letter-spacing:.08em;
+      text-transform:uppercase; color:var(--white);
+      font-weight:500; margin-bottom:.2rem;
+    }
+    .contact-detail-text a { color:var(--slate); text-decoration:none; transition:color .3s; }
+    .contact-detail-text a:hover { color:var(--teal); }
+
+    form { display:flex; flex-direction:column; gap:1.5rem; }
+    .form-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    .form-group { display:flex; flex-direction:column; gap:.6rem; }
+    .form-group label {
+      font-size:1.15rem; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--slate);
+    }
+    .form-group input, .form-group textarea {
+      background:#ffffff; border:1px solid var(--border);
+      color:var(--white); font-family:'Mulish',sans-serif;
+      font-size:1.5rem; padding:1.2rem 1.5rem;
+      outline:none; resize:none;
+      transition:border-color .3s, box-shadow .3s;
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color:rgba(75,90,122,.35); }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color:var(--teal);
+      box-shadow:0 0 0 3px rgba(26,86,219,.08);
+    }
+    .form-group textarea { height:140px; }
+    #form-status {
+      font-size:1.4rem; margin-top:.5rem;
+      min-height:2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding:4rem 8%;
+      border-top:1px solid var(--border);
+      display:flex; flex-direction:column; align-items:center; gap:2rem;
+    }
+    .footer-logo {
+      font-family:'Playfair Display',serif;
+      font-size:2.4rem; color:var(--white);
+    }
+    .footer-logo span { color:var(--teal); }
+    .footer-links { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
+    .footer-links a {
+      display:inline-flex; align-items:center; justify-content:center;
+      width:3.8rem; height:3.8rem; border-radius:50%;
+      font-size:1.8rem; color:var(--slate);
+      border:1px solid var(--border); text-decoration:none;
+      transition:all .3s;
+    }
+    .footer-links a:hover {
+      color:#ffffff; background:var(--teal);
+      border-color:var(--teal);
+      box-shadow:0 0 16px rgba(26,86,219,.2);
+      transform:translateY(-3px);
+    }
+    .footer-copy { font-size:1.3rem; color:var(--slate); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:translateY(0);    }
+    }
+    @keyframes fadeDown {
+      from { opacity:0; transform:translateY(-20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .reveal {
+      opacity:0; transform:translateY(28px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity:1; transform:none; }
+    .reveal-left {
+      opacity:0; transform:translateX(-30px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+    .reveal-left.visible { opacity:1; transform:none; }
+    .reveal-right {
+      opacity:0; transform:translateX(30px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+    .reveal-right.visible { opacity:1; transform:none; }
+
+    /* ── MOBILE NAV ── */
+    @media (max-width:960px) {
+      #menu-icon { display:block; }
+      .navbar {
+        position:fixed; top:0; right:-100%; bottom:0; width:26rem;
+        flex-direction:column; background:rgba(255,255,255,.97);
+        backdrop-filter:blur(20px);
+        border-left:1px solid var(--border);
+        padding:8rem 3rem 3rem;
+        transition:right .4s ease;
+        z-index:999;
+      }
+      .navbar.open { right:0; }
+      .navbar a { font-size:1.8rem; padding:1.2rem 0; margin:0; }
+      .nav-contact { display:none; }
+    }
+
+    @media (max-width:800px) {
+      .about-grid { grid-template-columns:1fr; }
+      .about-img-wrap { max-width:320px; margin:0 auto; }
+      .contact-grid { grid-template-columns:1fr; }
+      .form-row-2 { grid-template-columns:1fr; }
+      .tab-btn { padding:1rem 1.8rem; font-size:1.2rem; }
+    }
+
+    @media (max-width:480px) {
+      html { font-size:55%; }
+      .sec-pad, .sec-pad-alt { padding:7rem 5%; }
+      header { padding:1.5rem 5%; }
+      footer { padding:3rem 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- ═══ HEADER ═══ -->
+<header id="header">
+  <a href="#home" class="logo">Yeşim <span>Aygül</span></a>
+
+  <button id="menu-icon" class="bx bx-menu" aria-label="Toggle menu" aria-expanded="false"></button>
+
+  <ul class="navbar" id="navbar">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <a href="mailto:yesim.aygul@bakircay.edu.tr" class="nav-contact">Contact Me</a>
+</header>
+
+
+<!-- ═══ HOME ═══ -->
+<section id="home" class="sec-pad">
+  <div class="home-orb"></div>
+
+  <div class="home-img">
+    <div class="home-img-ring"></div>
+    <img src="assets/ProfileImage1.jpg" alt="Yeşim Aygül"/>
+  </div>
+
+  <p class="home-eyebrow">Izmir Bakırcay University</p>
+
+  <h1 class="home-title">Yeşim <span>Aygül</span></h1>
+
+  <p class="home-typed">
+    <span class="typed-text" id="typed-target"></span>
+  </p>
+
+  <p class="home-desc">
+    <strong>Research Assistant</strong> &amp; <strong>PhD Candidate</strong> specialising in
+    <em>Network Analysis</em>, <em>Machine Learning</em>, and <em>Virtual Reality</em>.
+  </p>
+
+  <div class="social-row">
+    <a href="https://www.linkedin.com/in/yeşim-aygül-bb2003176" aria-label="LinkedIn" title="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+    <a href="https://github.com/Yesim7" aria-label="GitHub" title="GitHub"><i class='bx bxl-github'></i></a>
+    <a href="https://scholar.google.com/citations?user=bpR9pcQAAAAJ&hl=tr&oi=ao" aria-label="Google Scholar" title="Google Scholar"><i class='bx bxl-google'></i></a>
+    <a href="https://orcid.org/0000-0003-0605-9604" aria-label="ORCID" title="ORCID"><i class='bx bx-id-card'></i></a>
+    <a href="https://www.researchgate.net/profile/Yesim-Ayguel" aria-label="ResearchGate" title="ResearchGate"><i class='bx bx-network-chart'></i></a>
+  </div>
+
+  <a href="#portfolio" class="btn-primary">View My Work</a>
+</section>
+
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about" class="sec-pad">
+  <div style="text-align:center; margin-bottom:5rem;">
+    <p class="sec-label reveal">Biography</p>
+    <h2 class="sec-heading reveal">About <span>Me</span></h2>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-img-wrap reveal-left">
+      <div class="about-img-accent"></div>
+      <img src="assets/ProfileImage2.jpg" alt="Yeşim Aygül — working environment"/>
+      <div class="about-badge"><strong>PhD</strong>Candidate</div>
+    </div>
+
+    <div class="about-text reveal-right">
+      <p>
+        I completed my <strong>BSc in Mathematics</strong> at Ege University (2020) and my
+        <strong>MSc in Computer Science</strong> at Ege University (2023), receiving the
+        <strong>Best Master's Thesis Award</strong> from the Graduate School of Natural and Applied Sciences.
+        Currently, I am pursuing a <strong>PhD in Computer Engineering</strong> at Izmir Bakırcay University,
+        where I have been working as a <strong>Research Assistant</strong> since April 2024.
+      </p>
+      <p>
+        My doctoral studies are centred on <em>distributed algorithm design</em> and its applications in
+        network optimisation. My broader research interests include
+        <em>critical element detection in networks</em>,
+        <em>machine learning for healthcare</em>, and
+        <em>Virtual Reality-based training systems</em>.
+        I am currently an <strong>Erasmus+ Intern Trainee</strong> at the University of Antwerp,
+        Department of Computer Science (Jan–Mar 2026).
+      </p>
+      <div class="about-pills">
+        <span class="pill">Graph Theory</span>
+        <span class="pill">Distributed Algorithms</span>
+        <span class="pill">Network Analysis</span>
+        <span class="pill">Machine Learning</span>
+        <span class="pill">Deep Learning</span>
+        <span class="pill">Metaheuristics</span>
+        <span class="pill">Virtual Reality</span>
+        <span class="pill">Healthcare AI</span>
+      </div>
+
+      <!-- Distinctions -->
+      <div style="margin:2.5rem 0; display:flex; flex-direction:column; gap:1rem;">
+        <div style="display:flex;align-items:flex-start;gap:1.2rem;padding:1.2rem;border:1px solid var(--border);">
+          <i class='bx bx-trophy' style="font-size:2.2rem;color:var(--teal);flex-shrink:0;margin-top:.2rem;"></i>
+          <div>
+            <p style="font-size:1.2rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:.3rem;">Best Master's Thesis Award · 2024</p>
+            <p style="font-size:1.4rem;color:var(--white);">Graduate School of Natural and Applied Sciences, Ege University — Dept. of Computer Science (MSc)</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:1.2rem;padding:1.2rem;border:1px solid var(--border);">
+          <i class='bx bx-world' style="font-size:2.2rem;color:var(--teal);flex-shrink:0;margin-top:.2rem;"></i>
+          <div>
+            <p style="font-size:1.2rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:.3rem;">Erasmus+ Intern Trainee · Jan–Mar 2026</p>
+            <p style="font-size:1.4rem;color:var(--white);">University of Antwerp, Dept. of Computer Science (Middelheim Campus), Belgium</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:1.2rem;padding:1.2rem;border:1px solid var(--border);">
+          <i class='bx bx-money' style="font-size:2.2rem;color:var(--teal);flex-shrink:0;margin-top:.2rem;"></i>
+          <div>
+            <p style="font-size:1.2rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:.3rem;">TÜBİTAK Grant · 2021–2023</p>
+            <p style="font-size:1.4rem;color:var(--white);">Grant No. 121F092 — Design and Analysis of Algorithms for Identifying Critical Elements in Networks</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="#portfolio" class="btn-primary">View My Work</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ RESEARCH AREAS ═══ -->
+<section id="research" class="sec-pad">
+  <div style="text-align:center; margin-bottom:5rem;">
+    <p class="sec-label reveal">Focus</p>
+    <h2 class="sec-heading reveal">Main <span>Research Areas</span></h2>
+    <p class="sec-sub reveal" style="margin:0 auto;">Three interconnected domains that shape my academic and applied research.</p>
+  </div>
+
+  <div class="research-grid">
+    <div class="research-card reveal">
+      <p class="research-num">01</p>
+      <div class="research-icon"><i class='bx bx-git-branch'></i></div>
+      <h3>Critical Element Detection</h3>
+      <p>Designing centralised and distributed algorithms for detecting critical nodes and edges in multi-hop wireless networks to maximise connectivity and resilience.</p>
+    </div>
+    <div class="research-card reveal">
+      <p class="research-num">02</p>
+      <div class="research-icon"><i class='bx bx-pulse'></i></div>
+      <h3>Machine Learning in Healthcare</h3>
+      <p>Prediction of disease severity, survival analysis, and clinical decision support using classical ML and deep learning approaches on real-world medical datasets.</p>
+    </div>
+    <div class="research-card reveal">
+      <p class="research-num">03</p>
+      <div class="research-icon"><i class='bx bx-vr'></i></div>
+      <h3>Virtual Reality-Based Training</h3>
+      <p>Scenario design and evaluation for occupational safety and campus digitalisation using immersive VR technologies for effective skill acquisition.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ PROJECTS & PUBLICATIONS ═══ -->
+<section id="portfolio" class="sec-pad" style="background:var(--cream);">
+  <div style="margin-bottom:2rem;">
+    <p class="sec-label reveal">Selected Work</p>
+    <h2 class="sec-heading reveal">Projects &amp; <span>Publications</span></h2>
+  </div>
+
+  <div class="tab-row reveal">
+    <button class="tab-btn active" data-tab="projects">Projects</button>
+    <button class="tab-btn" data-tab="publications">Publications</button>
+  </div>
+
+  <!-- PROJECTS TAB -->
+  <div class="tab-panel active" id="tab-projects">
+    <div class="proj-grid">
+
+      <div class="proj-card reveal">
+        <div class="proj-img">
+          <img src="assets/img2.png" alt="VR Occupational Safety Training"/>
+        </div>
+        <div class="proj-body">
+          <span class="proj-badge">TÜBİTAK 1002 · 2025–2026</span>
+          <h4>Virtual Reality for Occupational Safety Training: Firefighting &amp; Fall Simulation</h4>
+          <div class="proj-meta"><i class='bx bx-user'></i> Researcher</div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-img">
+          <img src="assets/img3.jpeg" alt="EndoAI — Polyp Detection"/>
+        </div>
+        <div class="proj-body">
+          <span class="proj-badge">TÜSEB Group A · 2025–2026</span>
+          <h4>EndoAI: Artificial Intelligence-Based DSS for Real-Time Polyp Detection</h4>
+          <div class="proj-meta"><i class='bx bx-user'></i> Researcher</div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-img">
+          <img src="assets/img3.jpeg" alt="Colorectal Cancer Survival Prediction"/>
+        </div>
+        <div class="proj-body">
+          <span class="proj-badge">TÜSEB Group A · 2025–2026</span>
+          <h4>Prediction of Survival Time in Colorectal Cancer Patients Using Ensemble Learning
+            <!-- TODO: complete full title --></h4>
+          <div class="proj-meta"><i class='bx bx-user'></i> Researcher</div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-img">
+          <img src="assets/img1.png" alt="VR Campus Digitalisation"/>
+        </div>
+        <div class="proj-body">
+          <span class="proj-badge">Scientific Research Project · 2025–2026</span>
+          <h4>Digitisation of University Campuses via Virtual Reality</h4>
+          <div class="proj-meta"><i class='bx bx-user'></i> Researcher</div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-img">
+          <img src="assets/img8.jpg" alt="Critical Elements in Networks"/>
+        </div>
+        <div class="proj-body">
+          <span class="proj-badge">TÜBİTAK 3501 · 2021–2023</span>
+          <h4>Design and Analysis of Centralised and Distributed Algorithms for Identifying Critical Elements in Networks</h4>
+          <div class="proj-meta"><i class='bx bx-award'></i> Scholarship Recipient</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PUBLICATIONS TAB -->
+  <div class="tab-panel" id="tab-publications">
+    <div class="pub-list">
+
+      <div class="pub-item reveal">
+        <span class="pub-num">01</span>
+        <div class="pub-body">
+          <p class="pub-venue">Iğdır Üniversitesi Fen Bilimleri Dergisi · 2025</p>
+          <h4>Kentsel Yol Ağlarında Kritik Kenar Tespiti için Etkin Bir Algoritma</h4>
+          <p><strong style="color:var(--teal2)">Aygül Y.</strong> et al. — <em>Iğdır Univ. J. Inst. Sci. Tech.</em> (2025).</p>
+          <a href="https://doi.org/10.21597/jist.1569294" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;font-size:1.25rem;color:var(--teal);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:.2rem;transition:color .3s;">
+            <i class='bx bx-link-external'></i> DOI: 10.21597/jist.1569294
+          </a>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-num">02</span>
+        <div class="pub-body">
+          <p class="pub-venue">PCI 2025 · Conference Paper</p>
+          <h4>Comparative Evaluation of Alternative Path Reliability Under Node Failures in Wireless Multi-Hop Networks</h4>
+          <p><strong style="color:var(--teal2)">Aygül Y.</strong> et al. — <em>PCI 2025</em>, IEEE.</p>
+          <a href="https://doi.org/10.1109/PCI66488.2025.11219847" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;font-size:1.25rem;color:var(--teal);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:.2rem;transition:color .3s;">
+            <i class='bx bx-link-external'></i> DOI: 10.1109/PCI66488.2025.11219847
+          </a>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-num">03</span>
+        <div class="pub-body">
+          <p class="pub-venue">Gümüşhane Üniversitesi Fen Bilimleri Dergisi · 2025</p>
+          <h4>Büyük Ölçekli Ağlar için Polinom Zamanlı Kritik Düğüm Tespiti Algoritması</h4>
+          <p><strong style="color:var(--teal2)">Aygül Y.</strong> et al. — <em>Gümüşhane Univ. J. Inst. Sci. Tech.</em> (2025).</p>
+          <a href="https://doi.org/10.17714/gumusfenbil.1569247" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;font-size:1.25rem;color:var(--teal);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:.2rem;transition:color .3s;">
+            <i class='bx bx-link-external'></i> DOI: 10.17714/gumusfenbil.1569247
+          </a>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-num">04</span>
+        <div class="pub-body">
+          <p class="pub-venue">Karaelmas Science and Engineering Journal · 2025</p>
+          <h4>Acil Yardım Dağıtımında İnsansız Hava Araçlarının Etkin Rotalanması</h4>
+          <p><strong style="color:var(--teal2)">Aygül Y.</strong> et al. — <em>Karaelmas Fen ve Mühendislik Dergisi</em> (2025).</p>
+          <a href="https://doi.org/10.7212/karaelmasfen.1498475" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;font-size:1.25rem;color:var(--teal);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:.2rem;transition:color .3s;">
+            <i class='bx bx-link-external'></i> DOI: 10.7212/karaelmasfen.1498475
+          </a>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-num">05</span>
+        <div class="pub-body">
+          <p class="pub-venue">Ad Hoc Networks · 2025</p>
+          <h4>Distributed Detecting of Critical Nodes for Maximization of Connected Components in Wireless Multi-Hop Networks</h4>
+          <p><strong style="color:var(--teal2)">Aygül Y.</strong> et al. — <em>Ad Hoc Networks</em>, 103744 (2025).</p>
+          <a href="https://doi.org/10.1016/j.adhoc.2024.103744" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;font-size:1.25rem;color:var(--teal);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:.2rem;transition:color .3s;">
+            <i class='bx bx-link-external'></i> DOI: 10.1016/j.adhoc.2024.103744
+          </a>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-num">06</span>
+        <div class="pub-body">
+          <p class="pub-venue">BMC Emergency Medicine · 2024</p>
+          <h4>Predicting Severity of Acute Appendicitis with Machine Learning Methods: A Simple and Promising Approach for Clinicians</h4>
+          <p>Yazici H., Ugurlu O., <strong style="color:var(--teal2)">Aygul Y.</strong>, Ugur M.A., Sen Y.K., Yildirim M. — <em>BMC Emerg Med</em> 24, 101 (2024).</p>
+          <a href="https://doi.org/10.1186/s12873-024-01023-9" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;font-size:1.25rem;color:var(--teal);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:.2rem;transition:color .3s;">
+            <i class='bx bx-link-external'></i> DOI: 10.1186/s12873-024-01023-9
+          </a>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-num">07</span>
+        <div class="pub-body">
+          <p class="pub-venue">arXiv · 2024</p>
+          <h4>Tıpta Uzmanlık Sınavında (TUS) Büyük Dil Modelleri İnsanlardan Daha mı Başarılı?</h4>
+          <p><strong style="color:var(--teal2)">Aygül Y.</strong> et al. — <em>arXiv</em> (2024).</p>
+          <a href="https://doi.org/10.48550/arXiv.2408.12305" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;font-size:1.25rem;color:var(--teal);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:.2rem;transition:color .3s;">
+            <i class='bx bx-link-external'></i> DOI: 10.48550/arXiv.2408.12305
+          </a>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-num">08</span>
+        <div class="pub-body">
+          <p class="pub-venue">Yüzüncü Yıl Üniversitesi Fen Bilimleri Dergisi · 2023</p>
+          <h4>Prediction of Financial Time Series with Deep Learning Algorithms</h4>
+          <p><strong style="color:var(--teal2)">Aygül Y.</strong> et al. — <em>Van Yüzüncü Yıl Univ. J. Inst. Nat. Appl. Sci.</em> (2023).</p>
+          <a href="https://doi.org/10.53433/yyufbed.1240021" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;font-size:1.25rem;color:var(--teal);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:.2rem;transition:color .3s;">
+            <i class='bx bx-link-external'></i> DOI: 10.53433/yyufbed.1240021
+          </a>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-num">09</span>
+        <div class="pub-body">
+          <p class="pub-venue">PCI 2023 · Conference Paper</p>
+          <h4>A Depth-First Search-Based Algorithm for the Minimization of the Largest Connected Component in Networks</h4>
+          <p><strong style="color:var(--teal2)">Aygül Y.</strong> et al. — <em>2023 5th International Conference on Problems of Cybernetics and Informatics (PCI)</em>, IEEE.</p>
+          <a href="https://doi.org/10.1109/PCI60110.2023.10326015" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;font-size:1.25rem;color:var(--teal);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:.2rem;transition:color .3s;">
+            <i class='bx bx-link-external'></i> DOI: 10.1109/PCI60110.2023.10326015
+          </a>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-num">10</span>
+        <div class="pub-body">
+          <p class="pub-venue">Turkish Journal of Trauma and Emergency Surgery · 2023</p>
+          <h4>The Effect of Well-Known Burn-Related Features on Machine Learning Algorithms in Burn Patients' Mortality Prediction</h4>
+          <p>Yazıcı H., Ugurlu O., <strong style="color:var(--teal2)">Aygul Y.</strong>, Yildirim M., Uçar A.D. — <em>Ulus Travma Acil Cerrahi Derg</em> 29(10):1130–1137 (2023).</p>
+          <a href="https://doi.org/10.14744/tjtes.2023.79968" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;font-size:1.25rem;color:var(--teal);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:.2rem;transition:color .3s;">
+            <i class='bx bx-link-external'></i> DOI: 10.14744/tjtes.2023.79968
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="sec-pad">
+  <div style="text-align:center; margin-bottom:5rem;">
+    <p class="sec-label reveal">Get in Touch</p>
+    <h2 class="sec-heading reveal">Contact <span>Me</span></h2>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-intro reveal-left">
+      <h3>Let's work or collaborate together.</h3>
+      <p>Whether you have a research proposal, a collaboration idea, or simply want to connect — I'm always happy to hear from you. I typically respond within one working day.</p>
+
+      <div class="contact-detail">
+        <div class="contact-icon"><i class='bx bx-envelope'></i></div>
+        <div class="contact-detail-text">
+          <strong>E-mail</strong>
+          <a href="mailto:yesim.aygul@bakircay.edu.tr">yesim.aygul@bakircay.edu.tr</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon"><i class='bx bx-map'></i></div>
+        <div class="contact-detail-text">
+          <strong>Address</strong>
+          Seyrek Campus, Menemen / Izmir, Turkey
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon"><i class='bx bx-building-house'></i></div>
+        <div class="contact-detail-text">
+          <strong>Institution</strong>
+          <a href="https://bilgisayar.bakircay.edu.tr/Sayfalar/514/akademik-personel" target="_blank" rel="noopener">
+            Dept. of Computer Engineering, IBU
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal-right">
+      <form action="https://formspree.io/f/mwprkboe" method="POST" id="contact-form">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off"/>
+        <input type="hidden" name="_subject" value="New message from Portfolio"/>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="f-name">Full Name</label>
+            <input type="text" id="f-name" name="name" placeholder="Jane Smith" required/>
+          </div>
+          <div class="form-group">
+            <label for="f-email">E-mail</label>
+            <input type="email" id="f-email" name="email" placeholder="jane@example.com" required/>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="f-phone">Phone (optional)</label>
+            <input type="tel" id="f-phone" name="phone" placeholder="+90 5xx xxx xx xx"/>
+          </div>
+          <div class="form-group">
+            <label for="f-subject">Subject</label>
+            <input type="text" id="f-subject" name="subject" placeholder="Collaboration / Research query"/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="f-msg">Message</label>
+          <textarea id="f-msg" name="message" placeholder="Your message..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary" style="clip-path:none; border:none; cursor:pointer; font-size:1.4rem;">
+          Send Message
+        </button>
+        <p id="form-status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-logo">Yeşim <span>Aygül</span></div>
+
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/yeşim-aygül-bb2003176" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+    <a href="https://github.com/Yesim7" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+    <a href="https://scholar.google.com/citations?user=bpR9pcQAAAAJ&hl=tr&oi=ao" aria-label="Google Scholar"><i class='bx bxl-google'></i></a>
+    <a href="https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&authorId=503D379A5CECFD31" aria-label="YÖK Akademik"><i class='bx bx-book'></i></a>
+    <a href="https://orcid.org/0000-0003-0605-9604" aria-label="ORCID"><i class='bx bx-id-card'></i></a>
+    <a href="https://www.researchgate.net/profile/Yesim-Ayguel" aria-label="ResearchGate"><i class='bx bx-network-chart'></i></a>
+    <a href="https://www.scopus.com/authid/detail.uri?authorId=57801486000" aria-label="Scopus"><i class='bx bx-search-alt'></i></a>
+    <a href="https://bilgisayar.bakircay.edu.tr/Sayfalar/514/akademik-personel" aria-label="Institutional Page"><i class='bx bx-building'></i></a>
+  </div>
+
+  <p class="footer-copy">&copy; <span id="year"></span> Yeşim Aygül &mdash; All Rights Reserved</p>
+</footer>
+
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+  /* ── Typed.js ── */
+  new Typed('#typed-target', {
+    strings: ['Researcher', 'PhD Candidate', 'Network Analyst', 'ML Engineer'],
+    typeSpeed: 65, backSpeed: 45, backDelay: 1200, loop: true
+  });
+
+  /* ── Mobile menu ── */
+  const menuBtn  = document.getElementById('menu-icon');
+  const navEl    = document.getElementById('navbar');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = navEl.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+    menuBtn.classList.toggle('bx-x', isOpen);
+    menuBtn.classList.toggle('bx-menu', !isOpen);
+  });
+  document.addEventListener('click', (e) => {
+    if (!navEl.contains(e.target) && e.target !== menuBtn) {
+      navEl.classList.remove('open');
+      menuBtn.classList.replace('bx-x','bx-menu');
+    }
+  });
+
+  /* ── Scroll: progress + close menu ── */
+  const bar   = document.getElementById('progress-bar');
+  const links = document.querySelectorAll('.navbar a');
+  const sections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', () => {
+    const s = document.documentElement;
+    bar.style.width = (s.scrollTop / (s.scrollHeight - s.clientHeight) * 100) + '%';
+
+    navEl.classList.remove('open');
+    menuBtn.classList.replace('bx-x','bx-menu');
+
+    /* active nav link */
+    let cur = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) cur = sec.id;
+    });
+    links.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#'+cur);
+    });
+  });
+
+  /* ── Reveal on scroll ── */
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en, i) => {
+      if (en.isIntersecting) {
+        setTimeout(() => en.target.classList.add('visible'), i * 60);
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
+
+  /* ── Tabs ── */
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  /* ── Contact form (Formspree async) ── */
+  const contactForm = document.getElementById('contact-form');
+  const statusEl    = document.getElementById('form-status');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.style.color = 'var(--slate)';
+      statusEl.textContent = 'Sending…';
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { Accept: 'application/json' }
+        });
+        if (res.ok) {
+          contactForm.reset();
+          statusEl.style.color = 'var(--teal)';
+          statusEl.textContent = '✓ Message sent — thank you!';
+        } else {
+          statusEl.style.color = '#f28b82';
+          statusEl.textContent = 'Something went wrong. Please try again.';
+        }
+      } catch {
+        statusEl.style.color = '#f28b82';
+        statusEl.textContent = 'Network error. Please check your connection.';
+      }
+    });
+  }
+
+  /* ── Year ── */
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
