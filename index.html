@@ -547,6 +547,52 @@
       header { padding:1.5rem 5%; }
       footer { padding:3rem 5%; }
     }
+    /* ── DARK MODE ── */
+body.dark {
+  --navy:#06093a; --navy2:#0d1254; --indigo:#1a2080;
+  --teal:#3b82f6; --teal2:#60a5fa; --cream:#0d1254;
+  --white:#e8eaf6; --slate:#8892b0;
+  --border:rgba(59,130,246,.2); --glow:rgba(59,130,246,.1);
+  --card:rgba(13,18,84,.7); --glass:rgba(6,9,58,.85);
+  background:#06093a;
+}
+body.dark .form-group input,
+body.dark .form-group textarea { background:rgba(6,9,58,.8); color:#e8eaf6; }
+
+/* ── NAV CONTROLS ── */
+.nav-controls { display:flex; align-items:center; gap:.8rem; }
+.ctrl-btn {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:3.4rem; height:3.4rem; border-radius:50%;
+  border:1px solid var(--border); background:transparent;
+  cursor:pointer; font-size:1.5rem; color:var(--slate); transition:all .3s;
+}
+.ctrl-btn:hover { border-color:var(--teal); color:var(--teal); }
+.lang-toggle {
+  display:inline-flex; align-items:center;
+  border:1px solid var(--border); border-radius:2rem; overflow:hidden;
+}
+.lang-toggle button {
+  padding:.5rem 1.1rem; background:transparent; border:none;
+  cursor:pointer; color:var(--slate); transition:all .3s;
+  font-family:'Mulish',sans-serif; font-size:1.2rem; font-weight:600;
+}
+.lang-toggle button.active { background:var(--teal); color:#fff; }
+.lang-toggle button:not(.active):hover { color:var(--teal); }
+
+/* ── BACK TO TOP ── */
+#back-to-top {
+  position:fixed; bottom:2.5rem; right:2.5rem; z-index:500;
+  width:4.2rem; height:4.2rem; border-radius:50%;
+  background:var(--teal); color:#fff; border:none; cursor:pointer;
+  font-size:2rem; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 20px rgba(26,86,219,.25);
+  opacity:0; transform:translateY(10px);
+  transition:all .3s; pointer-events:none;
+}
+#back-to-top.visible { opacity:1; transform:translateY(0); pointer-events:all; }
+#back-to-top:hover { background:var(--teal2); transform:translateY(-3px); }
+    
   </style>
 </head>
 <body>
@@ -568,6 +614,16 @@
   </ul>
 
   <a href="mailto:yesim.aygul@bakircay.edu.tr" class="nav-contact">Contact Me</a>
+
+  <div class="nav-controls">
+  <div class="lang-toggle">
+    <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="lang-tr" onclick="setLang('tr')">TR</button>
+  </div>
+  <button class="ctrl-btn" id="dark-toggle" title="Toggle dark mode">
+    <i class='bx bx-moon' id="dark-icon"></i>
+  </button>
+</div>
 </header>
 
 
@@ -1117,9 +1173,37 @@
 
   /* ── Year ── */
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Dark mode
+const darkBtn = document.getElementById('dark-toggle');
+const darkIcon = document.getElementById('dark-icon');
+if(localStorage.getItem('theme')==='dark'){ document.body.classList.add('dark'); darkIcon.className='bx bx-sun'; }
+darkBtn.addEventListener('click',()=>{
+  document.body.classList.toggle('dark');
+  const d = document.body.classList.contains('dark');
+  darkIcon.className = d ? 'bx bx-sun' : 'bx bx-moon';
+  localStorage.setItem('theme', d ? 'dark' : 'light');
+});
+
+// Back to top
+const topBtn = document.getElementById('back-to-top');
+window.addEventListener('scroll',()=>{ topBtn.classList.toggle('visible', window.scrollY>400); });
+topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// Dil toggle — ihtiyacına göre metinleri düzenle
+function setLang(lang){
+  document.getElementById('lang-en').classList.toggle('active', lang==='en');
+  document.getElementById('lang-tr').classList.toggle('active', lang==='tr');
+  // Buraya çeviri mantığını ekle
+}
+  
 </script>
+  <button id="back-to-top" title="Back to top">
+  <i class='bx bx-chevron-up'></i>
+</button>
 </body>
 </html>
+
 
 
 
